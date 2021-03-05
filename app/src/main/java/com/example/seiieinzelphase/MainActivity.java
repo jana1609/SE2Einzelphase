@@ -15,11 +15,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void calculation(View view){
+    public void sendServer(View view){
         // do something
-        TextView tvAntwort = (TextView) findViewById(R.id.tvAntwort);
-        EditText etEingabe = (EditText) findViewById(R.id.input);
-        int input = Integer.parseInt(etEingabe.getText().toString());
-        tvAntwort.setText("Button was clicked!!!" + input);
+    }
+
+    public void calculation(View view){
+        // alternierende Quersumme bilden und ausgeben ob diese gerade oder ungerade ist
+
+        // get Layout Elements
+        TextView tvAntwort = findViewById(R.id.tvAntwort);
+        EditText etEingabe = findViewById(R.id.input);
+        String inputString = etEingabe.getText().toString();
+
+        // bildet alternierende Quersumme mit (-1)^n * (int at length - 1 - n) mit n von 0 bis length - 1
+        int altQuersumme = 0;
+        for (int i = 0; i<inputString.length(); i++) {
+            altQuersumme += Math.pow(-1, i) * Character.getNumericValue(inputString.charAt(inputString.length()-1-i));
+        }
+        // Quersumme gerade oder ungerade
+        String output = "Die alternierende Quersumme "+altQuersumme+" von "+inputString+" ist ";
+        if(altQuersumme % 2 == 0) output += "gerade";
+        else output += "ungerade";
+
+        // output result
+        tvAntwort.setText(output);
     }
 }
