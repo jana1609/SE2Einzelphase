@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     public void calculation(View view){
         // do something
         TextView tvAntwort = (TextView) findViewById(R.id.tvAntwort);
-        tvAntwort.setText("Button was clicked!!!");
+        EditText etEingabe = (EditText) findViewById(R.id.input);
+        int input = Integer.parseInt(etEingabe.getText().toString());
+        tvAntwort.setText("Button was clicked!!!" + input);
     }
 }
